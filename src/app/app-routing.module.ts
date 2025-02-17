@@ -43,6 +43,7 @@ const routes: Routes = [
     component: UserManagerComponent,
   },
   {
+    canActivate: [AuthGuard],
     path: 'orgrow',
     loadChildren: () =>
       loadRemoteModule({
