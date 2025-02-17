@@ -76,7 +76,17 @@ $ORGHUB-theme: mat.define-light-theme(
 }
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: red;
+  background-color: #000000;
+}
+
+.mat-expansion-panel {
+  background: #1C1C1C;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mdc-menu-surface {
+  background-color: #000000;
+  color: var(--mdc-theme-on-surface, #000);
 }
 
 .mdc-text-field--filled .mdc-floating-label {
