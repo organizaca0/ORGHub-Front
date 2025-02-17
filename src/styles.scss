@@ -1,0 +1,131 @@
+@import "./app/shared/styles/custom-theme.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgb(255, 255, 255);
+  overflow-x: hidden;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Body styles */
+body {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  background-color: #121212;
+}
+
+html,
+body {
+  height: 100%;
+}
+.div-center {
+  display: flex;
+  justify-content: center;
+}
+
+.div-center-cl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.div-center-cl-fstart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.div-row-spc-around{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.div-row-spc-between{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.div-center-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.div-center-bl {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: row;
+  width: 100%;
+}
+
+.div-center-fstart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.div-center-100{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+.div-center-grid {
+  display: grid;
+  justify-content: center;
+}
+
+.div-flstart-base {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-direction: row;
+  width: 100%;
+}
+
+.div-flstart-column {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-content: flex-start;
+}
+
+.clean-conteiner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1c1c1c;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 15px 5px;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.separator {
+  margin: 2rem;
+}
+
+.margin-top{
+  margin-top: 1rem;
+}

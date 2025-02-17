@@ -1,0 +1,79 @@
+.conteiner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #1c1c1c;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 15px 5px;
+  height: 60vh;
+  width: 60vw;
+  align-items: center;
+  margin-top: 3rem;
+  border-radius: 10px;
+}
+
+.divisor {
+  background-color: #878787;
+  padding: 5px;
+  height: 50vh;
+  margin-left: 2rem;
+}
+
+.icon {
+  margin-left: 2rem;
+}
+
+.login-container {
+  width: 60%;
+  overflow: hidden;
+}
+
+.login {
+  width: 40%;
+}
+
+.login-title {
+  margin-bottom: 2rem;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+.error-conteiner {
+  background: #2b2b2b;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+@media screen and (min-width: 350px) and (max-width: 431px) {
+  .icon {
+    display: none;
+  }
+
+  .divisor {
+    display: none;
+  }
+
+  .conteiner {
+    width: 98vw;
+    margin-top: 4rem;
+  }
+
+  .div-center-cl-fstart {
+    width: 100%;
+  }
+  .login {
+    width: auto;
+  }
+
+  .error-conteiner {
+    margin-top: 2rem;
+    width: auto;
+  }
+}

@@ -1,0 +1,125 @@
+<div [class.open]="isMenuOpen"
+	class="side-nav-container div-center-cl-fstart">
+	<div class="close-button">
+		<svg (click)="isMenuOpen = !isMenuOpen"
+			class="close-button"
+			xmlns="http://www.w3.org/2000/svg"
+			height="40px"
+			viewBox="0 -960 960 960"
+			width="40px"
+			fill="#e8eaed">
+			<path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"></path>
+		</svg>
+	</div>
+	<div class="div-center menuItens">
+		<div *ngIf="isAuthenticated">
+			<svg xmlns="http://www.w3.org/2000/svg"
+				height="40px"
+				viewBox="0 -960 960 960"
+				width="40px"
+				fill="#e8eaed">
+				<path d="M278-279.33h276.67V-346H278v66.67Zm0-167.34h404v-66.66H278v66.66ZM278-614h404v-66.67H278V-614Zm-91.33 494q-27 0-46.84-19.83Q120-159.67 120-186.67v-586.66q0-27 19.83-46.84Q159.67-840 186.67-840h586.66q27 0 46.84 19.83Q840-800.33 840-773.33v586.66q0 27-19.83 46.84Q800.33-120 773.33-120H186.67Zm0-66.67h586.66v-586.66H186.67v586.66Zm0-586.66v586.66-586.66Z"></path>
+			</svg>
+			<h1 (click)="isMenuOpen = !isMenuOpen"
+				routerLink="orgrow/documentacao">
+				DOCUMENTAÇÃO
+			</h1>
+		</div>
+
+
+	</div>
+</div>
+<div class="navBar">
+	<svg (click)="isMenuOpen = !isMenuOpen"
+		class="menu-icon"
+		xmlns="http://www.w3.org/2000/svg"
+		height="40px"
+		viewBox="0 -960 960 960"
+		width="40px"
+		fill="#e8eaed">
+		<path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"></path>
+	</svg>
+	<img src="assets/images/icons/org_icon.png"
+		class="image-size-mobile button icon-mobile"
+		alt="Organization Icon"
+		routerLink="/home">
+	<img src="assets/images/icons/org_icon_com_texto.png"
+		class="image-size button"
+		alt="Organization Icon"
+		routerLink="/home">
+	<p class="button menu-item inicio"
+		routerLink="/home">
+		INÍCIO
+	</p>
+	<p *ngIf="!isAuthenticated" 
+		class="button menu-item"
+		routerLink="/sobre">
+		SOBRE
+	</p>
+	<mat-form-field *ngIf="isAuthenticated"
+		[routerLink]="projetoControl.value"
+		class="select-projeto">
+		<mat-label>PROJETOS</mat-label>
+		<mat-select [formControl]="projetoControl"
+			name="projeto">
+			<mat-option *ngFor="let projeto of projetos"
+				[value]="projeto.value">
+				{{projeto.viewValue}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<span *ngIf="isAuthenticated" class="bar">|</span>
+	<p *ngIf="isAuthenticated"
+		class="username">
+		{{user.name}}
+	</p>
+	<p *ngIf="!isAuthenticated"
+		class="button menu-item"
+		routerLink="/projetos">
+		PROJETOS
+	</p>
+	<p *ngIf="!isAuthenticated"
+		class="button entrar"
+		routerLink="/login">
+		ENTRAR
+	</p>
+	<img *ngIf="isAuthenticated"
+		[matMenuTriggerFor]="menu"
+		class="user-icon"
+		src={{user.profilePictureUrl}}
+		alt>
+	<mat-menu #menu="matMenu">
+		<button mat-menu-item
+			routerLink="/profile">
+			<svg xmlns="http://www.w3.org/2000/svg"
+				height="24px"
+				viewBox="0 -960 960 960"
+				width="24px"
+				fill="#e8eaed">
+				<path d="M480-440q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-46q-54-53-125.5-83.5T480-360q-83 0-154.5 30.5T200-246v46Z"></path>
+			</svg>
+			<span class="user-button">Meu Perfil</span>
+		</button>
+		<button mat-menu-item routerLink="/user-manager" *ngIf="hasRole('ADMIN')">
+			<svg xmlns="http://www.w3.org/2000/svg"
+				height="24px"
+				viewBox="0 -960 960 960"
+				width="24px"
+				fill="#e8eaed">
+				<path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z"></path>
+			</svg>
+			<span class="user-button">Painel Admin</span>
+		</button>
+		<button mat-menu-item
+			(click)="logout()">
+			<svg xmlns="http://www.w3.org/2000/svg"
+				height="24px"
+				viewBox="0 -960 960 960"
+				width="24px"
+				fill="#e8eaed">
+				<path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"></path>
+			</svg>
+			<span class="user-button">Sair</span>
+		</button>
+	</mat-menu>
+</div>

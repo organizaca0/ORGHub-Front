@@ -1,0 +1,22 @@
+.footer {
+  background: linear-gradient(to right, #0a3000, #000c66);
+  width: 100vw;
+  height: 4rem;
+  padding: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Chakra Petch", sans-serif;
+  color: white !important;
+}
+
+.italic {
+  margin-left: 1rem;
+  font-style: italic;
+}
+
+@media screen and (min-width: 350px) and (max-width: 431px) {
+  .footer {
+    padding: 1rem;
+  }
+}

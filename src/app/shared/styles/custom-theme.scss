@@ -1,0 +1,245 @@
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$custom-primary-palette: (
+  50: #ff0000,
+  100: #c5cae9,
+  200: #9fa8da,
+  300: #6ac497,
+  400: #5c6bc0,
+  500: #3f51b5,
+  600: #3949ab,
+  700: #303f9f,
+  800: #ffffff,
+  900: #1ad09f,
+  A100: #8c9eff,
+  A200: #536dfe,
+  A400: #3d5afe,
+  A700: #7c2929,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgb(0, 0, 0),
+    400: rgb(255, 0, 0),
+    500: rgb(255, 0, 0),
+    600: rgb(0, 255, 0),
+    700: white,
+    800: white,
+    900: rgb(94, 94, 94),
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: rgb(132, 0, 255),
+    A700: rgb(255, 0, 0),
+  ),
+);
+
+$ORGHUB-primary: mat.define-palette($custom-primary-palette);
+$ORGHUB-accent: mat.define-palette($custom-primary-palette);
+
+$ORGHUB-warn: mat.define-palette(mat.$red-palette);
+
+$ORGHUB-theme: mat.define-light-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $ORGHUB-primary,
+      accent: $ORGHUB-accent,
+      warn: $ORGHUB-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($ORGHUB-theme);
+
+.mat-expansion-panel {
+  --mat-expansion-container-background-color: rgb(0 103 68);
+  p {
+    color: rgb(255, 255, 255) !important;
+  }
+  border-radius: 15px !important;
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  color: rgb(255, 255, 255) !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: red;
+}
+
+.mdc-text-field--filled .mdc-floating-label {
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+.mat-primary
+  .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+  color: rgb(0, 140, 148);
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  --mat-tab-header-inactive-label-text-color: rgb(125, 125, 125);
+}
+
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: rgb(0 154 101) !important;
+}
+
+.mat-mdc-slide-toggle.mat-accent {
+  --mdc-switch-selected-handle-color: rgb(0 154 101) !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #444444 !important;
+}
+
+.mat-mdc-tab-group,
+.mat-mdc-tab-nav-bar {
+  --mdc-tab-indicator-active-indicator-color: rgb(0 154 101) !important;
+  --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+  --mat-tab-header-pagination-icon-color: #000;
+  --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-label-text-color: rgb(0 154 101) !important;
+  --mat-tab-header-active-ripple-color: rgb(0 154 101) !important;
+  --mat-tab-header-inactive-ripple-color: rgb(0 154 101) !important;
+  --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-focus-label-text-color: rgb(0 154 101) !important;
+  --mat-tab-header-active-hover-label-text-color: rgb(0 154 101) !important;
+  --mat-tab-header-active-focus-indicator-color: rgb(0 154 101) !important;
+  --mat-tab-header-active-hover-indicator-color: rgb(0 154 101) !important;
+}
+
+.mat-mdc-slider.mat-primary {
+  --mdc-slider-handle-color: #1ba52a;
+  --mdc-slider-focus-handle-color: #249d00;
+  --mdc-slider-hover-handle-color: #008d04;
+  --mdc-slider-active-track-color: #176500;
+  --mdc-slider-inactive-track-color: #68ff78;
+  --mdc-slider-with-tick-marks-active-container-color: #fff;
+  --mdc-slider-with-tick-marks-inactive-container-color: #076e00;
+  --mat-mdc-slider-ripple-color: #205500;
+  --mat-mdc-slider-hover-ripple-color: rgb(87 181 63 / 5%);
+  --mat-mdc-slider-focus-ripple-color: rgb(91 181 63 / 20%);
+}
+
+.mat-mdc-slide-toggle .mdc-switch--disabled + label {
+  color: rgb(139, 139, 139) !important;
+}
+
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  background-color: rgb(0 173 24 / 30%) !important;
+}
+
+.mat-calendar-body-cell-content {
+  color: white !important;
+}
+
+.mat-datepicker-content {
+  background-color: #3d5d46 !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: #629a4d !important;
+  color: var(--mat-datepicker-calendar-date-selected-state-text-color);
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  color: rgb(255 255 255 / 87%) !important;
+}
+
+.mat-mdc-slider .mdc-slider__track,
+.mat-mdc-slider .mdc-slider__thumb {
+  overflow: visible;
+}
+
+.mdc-switch .mdc-switch__handle-track {
+  overflow: visible;
+}
+
+.mat-mdc-slide-toggle .mdc-form-field {
+  overflow: visible;
+}
+
+.mdc-list-item__primary-text {
+  color:#ffff;
+}
+
+.mdc-list-item__primary-text {
+   color: #ffff!important; 
+}
+
+:root {
+  --mat-select-panel-background-color: rgb(0, 0, 0);
+  --mdc-filled-text-field-container-color: rgb(0, 0, 0);
+  --mat-option-selected-state-label-text-color: rgb(0, 140, 148);
+  --mdc-filled-text-field-active-indicator-color: rgb(0, 0, 0);
+  --mdc-filled-text-field-focus-active-indicator-color: rgb(0, 140, 148);
+  --mat-tab-header-active-label-text-color: rgb(0, 140, 148);
+  --mat-menu-container-color: #232323;
+  --mdc-filled-text-field-disabled-container-color: #000000;
+  --mdc-filled-text-field-disabled-input-text-color: #ffff;
+  --mat-expansion-header-indicator-color: #ffff;
+  --mdc-filled-text-field-focus-active-indicator-color: rgb(46, 119, 0);
+}
+
+.mat-mdc-text-field-wrapper {
+  width: 15rem !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: #19b64f;
+  --mdc-protected-button-label-text-color: #000;
+}
+
+.mat-mdc-fab.mat-accent,
+.mat-mdc-mini-fab.mat-accent {
+  --mdc-fab-container-color: #64bb44;
+  --mdc-fab-icon-color: white;
+  --mat-mdc-fab-color: #fff;
+}
+
+.mat-mdc-tab-group.mat-mdc-tab-group-dynamic-height .mat-mdc-tab-body.mat-mdc-tab-body-active {
+  width: 90vw;
+}
+
+.mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+  right: -16px;
+  top: 0px;
+}
+
+.mat-badge-content {
+  background-color: #ff3800;
+  color: #ffffff;
+}
+
+.mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke:  #96ff99 !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  width: 100%;
+  border-radius: 15px!important;
+}
+
+@media screen and (min-width: 400px) and (max-width: 431px) and (min-height: 900px) and (max-height: 933px) {
+  .mat-mdc-tab-group {
+    max-width: 95vw!important;
+  }
+} 

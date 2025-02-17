@@ -1,0 +1,37 @@
+.content {
+  flex-direction: column;
+  margin-top: 4rem;
+}
+
+.projetos-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 3rem;
+  span {
+    background: linear-gradient(
+      to right,
+      #66ffcc,
+      #00ffaa
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+  }
+  margin-top:3rem;
+  margin-bottom: 1rem;
+}
+
+.projetos-subtitle{
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.projetos {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.icon-title {
+  margin-right: 1rem;
+}
+.user-icon {
+  margin-top: 2rem;
+  vertical-align: bottom;
+}

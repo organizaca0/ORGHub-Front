@@ -1,0 +1,65 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .app-content {
+    flex: 1; /* This will make the content grow to fill available space */
+  }
+  
+  footer {
+    flex-shrink: 0; /* Prevent footer from shrinking */
+  }
+
+  /* Override Quill editor background and text color */
+.ql-container {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Style the toolbar */
+.ql-toolbar {
+  background-color: #333333;
+  border: none;
+}
+
+/* Style the toolbar buttons */
+.ql-toolbar .ql-formats button,
+.ql-toolbar .ql-formats .ql-picker-label,
+.ql-toolbar .ql-formats .ql-picker-item {
+  color: #ffffff;
+}
+
+/* Style the editor area */
+.ql-editor {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Style the editor caret (blinking cursor) */
+.ql-editor p::selection {
+  background-color: #555555;
+}
+
+.ql-editor p::selection {
+  background-color: #555555;
+}
+
+.ql-editor blockquote {
+  border-left: 4px solid #666666;
+  color: #dddddd;
+}
+
+.ql-editor a {
+  color: #1e90ff;
+}
+
+.ql-editor a:hover {
+  color: #00aaff;
+}

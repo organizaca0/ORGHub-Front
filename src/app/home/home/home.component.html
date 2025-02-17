@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="center">
+    <h1 *ngIf="!isLoggedIn" class="header-title">Bem vindo <br />ao <span> ORGHub!</span></h1>
+    <h1 *ngIf="isLoggedIn"  class="header-title">Bem vindo novamente <br />ao <span> ORGHub!</span></h1>
+    <h2 class="header-content">
+O mais poderoso grow auto controlável.
+    </h2>
+    <p *ngIf="!isLoggedIn" class="button entrar" routerLink="/login" (click)="openDialog()" >FAÇA PARTE</p>
+  </div>
+  <div class="center">
+    <img *ngIf="!isLoggedIn"
+      src="assets/images/images/cyberpunk_cat.png"
+      class="main-image"
+      alt="cyberpunk-cat"
+      routerLink="/home"
+      height="600"
+      width="600"
+    />
+    <img *ngIf="isLoggedIn"
+    src="assets/images/images/robot-plant-pot.png"
+    class="main-image"
+    alt="Organization Icon"
+    routerLink="/home"
+    height="600"
+    width="600"
+  />
+  </div>
+</div>

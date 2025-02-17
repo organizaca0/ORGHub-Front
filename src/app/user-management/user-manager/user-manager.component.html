@@ -1,0 +1,96 @@
+<div class="div-center-cl ">
+    <h2 class="header">Painel de Controle</h2>
+    <h2 class="user-title">Usuários</h2>
+    <div class="div-center-100 filter">
+        FILTRO
+         <!-- 
+        <mat-form-field class="separator">
+            <mat-label>Username</mat-label>
+            <input matInput type="text">
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Últimas...</mat-label>
+            <mat-select [(value)]="selectedRole">Binding the selected value 
+              <mat-option *ngFor="let role of roles" [value]="role">  
+                {{role}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>        -->  
+        <button mat-raised-button color="primary">Limpar</button>
+        <button class="search-button" mat-raised-button color="primary">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+            <span > Buscar</span>
+        </button>
+
+
+    </div>
+    <div class="manager-conteiner div-center-cl">
+        <div class="div-flstart-column">
+            <div class="div-center columns">
+                <p class="column-title user-col">USERNAME</p>
+                <p class="column-title">CARGOS</p>
+                <p class="column-title">STATUS</p>
+                <p class="column-title actions-header">AÇÕES</p>
+            </div>
+            <div *ngFor="let user of users" class="div-center rows">
+                <p class="row user-col">{{user.userName}}</p>
+                <p class="row">
+                    <span *ngFor="let role of user.roles" class="pill">{{role}}</span>
+                </p>
+                <p class="row">{{user.status}}</p>
+                <svg [matMenuTriggerFor]="menu"
+                class="row "
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#e8eaed">
+                <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"></path>
+            </svg>
+                  <mat-menu #menu="matMenu">
+                    <button (click)="changeStatus(user.userName, user.status)"
+                    mat-menu-item>
+                    <svg *ngIf="user.status==='ACTIVE'"	
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#e8eaed">
+                        <path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"></path>
+                    </svg>
+                    <svg *ngIf="user.status==='DESATIVADO'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#e8eaed">
+                        <path d="M240-160h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM240-160v-400 400Zm0 80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h280v-80q0-83 58.5-141.5T720-920q83 0 141.5 58.5T920-720h-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80h120q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Z"></path>
+                    </svg>
+                    <span *ngIf="user.status==='ACTIVE' "
+                        class="delete-button">
+                        Desativar
+                    </span>
+                    <span *ngIf="user.status==='INACTIVE' || user.status==='SUSPENDED'"
+                        class="delete-button">
+                        Ativar
+                    </span>
+                </button>
+                    <button  (click)="deleteUser(user.userName)"
+                        mat-menu-item>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="#e8eaed">
+                            <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"></path>
+                        </svg>
+                        <span class="delete-button">Deletar</span>
+                    </button>
+                  </mat-menu>       
+            </div>
+        </div>
+
+
+    </div>
+</div>
