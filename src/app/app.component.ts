@@ -1,7 +1,5 @@
-import { TcsService } from './shared/services/tcs.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from './shared/services/user.service';
-import { ImageService } from './shared/services/image.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +8,6 @@ import { ImageService } from './shared/services/image.service';
 })
 export class AppComponent implements OnInit{
   userService = inject(UserService);
-  //imageService = inject(ImageService);
-  tcsService = inject(TcsService);
   title = 'ORGHUB';
 
   ngOnInit(){
