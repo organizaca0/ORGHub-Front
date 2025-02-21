@@ -1,113 +1,173 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { from, map, Observable } from 'rxjs';
-import { enviroment } from '../../../enviroment/enviroment';
-import { EnviromentResponse } from '../interfaces/Enviroment.interface';
-import { Grow } from '../interfaces/Grow.interface';
-import { EnviromentSetup } from '../interfaces/EnviromentSetup.interface';
-
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { from, map, Observable } from "rxjs";
+import { enviroment } from "../../../enviroment/enviroment";
+import { EnviromentResponse } from "../interfaces/Enviroment.interface";
+import { Grow } from "../interfaces/Grow.interface";
+import { EnviromentSetup } from "../interfaces/EnviromentSetup.interface";
+import { BasicAbstractService } from "../classes/BasicAbstractService";
+import { MiddlewareRequest } from "../interfaces/MiddlewareRequest.interface";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
-export class GrowService {
-  private baseUrl = enviroment.api_url;
-  private eventSource!: EventSource;
+export class GrowService extends BasicAbstractService {
+  protected projectId = "orgrow";
+  protected controllerId = "grow";
 
-  constructor(private http: HttpClient) {}
+  constructor() {
+    super();
+  }
 
   getGrows(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/orgrow/grows`);
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: this.controllerId,
+      httpMethod: "get",
+      parameters: [],
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
-  createGrow(grow:Grow):Observable<any>{
-    return this.http.post(`${this.baseUrl}/orgrow/create`, grow);
+  createGrow(grow: Grow): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: this.controllerId,
+      httpMethod: "post",
+      parameters: ["create"],
+      body: grow,
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
-  updateGrow(alias:String, updatedGrow:Grow){
-    return this.http.put(`${this.baseUrl}/orgrow/update/${alias}`, updatedGrow);
+  updateGrow(alias: string, updatedGrow: Grow): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: this.controllerId,
+      httpMethod: "put",
+      parameters: ["update", alias],
+      body: updatedGrow,
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
-  deleteGrow(alias:String){
-    return this.http.delete(`${this.baseUrl}/orgrow/delete/${alias}`, { observe: 'response' });
+  deleteGrow(alias: string): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: this.controllerId,
+      httpMethod: "delete",
+      parameters: ["delete", alias],
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
-  getGrowByAlias(alias: String):Observable<any>{
-    return this.http.get(`${this.baseUrl}/orgrow/grow/${alias}`);
+  getGrowByAlias(alias: string): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: this.controllerId,
+      httpMethod: "get",
+      parameters: ["grow", alias],
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
-  changeStatus(alias:string, status:string): Observable<any>{
-    return this.http.patch(`${this.baseUrl}/orgrow/change-status/${alias}/${status}`, null);
+  changeStatus(alias: string, status: string): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: this.controllerId,
+      httpMethod: "patch",
+      parameters: ["change-status", alias, status],
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
-  getEnviromentDataByPeriod(alias: string, period: number): Observable<EnviromentResponse[]> {
-    return this.http.get<EnviromentResponse[]>(`${this.baseUrl}/enviroment/get-data/${alias}/${period}`);
-  }  
+  getEnviromentDataByPeriod(alias: string, period: number): Observable<any[]> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: "enviroment",
+      httpMethod: "get",
+      parameters: ["get-data", alias, period],
+    };
 
-  getIncidentsByPeriod(alias:string, period:number):Observable<any>{
-    return this.http.get<any[]>(`${this.baseUrl}/enviroment/get-incidents/${alias}/${period}`);
+    return this.createRequestToMiddleware(request);
   }
 
-  getSetup(alias: String){
-    return this.http.get(`${this.baseUrl}/enviroment/get-setup/${alias}`);
+  getIncidentsByPeriod(alias: string, period: number): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: "enviroment",
+      httpMethod: "get",
+      parameters: ["get-incidents", alias, period],
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
-  setSetup(setup:EnviromentSetup){
-    return this.http.post(`${this.baseUrl}/enviroment/setup`, setup);
+  getSetup(alias: string): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: "enviroment",
+      httpMethod: "get",
+      parameters: ["get-setup", alias],
+    };
+
+    return this.createRequestToMiddleware(request);
+  }
+
+  setSetup(setup: EnviromentSetup): Observable<any> {
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: "enviroment",
+      httpMethod: "post",
+      parameters: ["setup"],
+      body: setup,
+    };
+
+    return this.createRequestToMiddleware(request);
   }
 
   createReport(alias: string, startDate: string, endDate: string): void {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: "report",
+      httpMethod: "get",
+      parameters: ["generate", alias],
+      queryParams: {
+        startDate: new Date(startDate).toISOString(),
+        endDate: new Date(endDate).toISOString(),
+      },
+    };
 
-    const startDateConverted = start.toISOString();
-    const endDateConverted = end.toISOString();
-
-    this.http
-      .get(
-        `${this.baseUrl}/report/generate/${alias}?startDate=${startDateConverted}&endDate=${endDateConverted}`,
-        {
-          responseType: 'blob',
-        }
-      )
-      .subscribe((response: Blob) => {
+    this.createRequestToMiddleware(request).subscribe(
+      (response: Blob) => {
         const url = window.URL.createObjectURL(response);
-
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = 'report.csv'; 
+        a.download = "report.csv";
         document.body.appendChild(a);
         a.click();
-        
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
-      }, error => {
-        console.error('Error downloading the file', error);
-      });
+      },
+      (error) => {
+        console.error("Error downloading the file", error);
+      }
+    );
   }
 
   getEnviromentData(alias: string): Observable<EnviromentResponse> {
-    const eventSource = new EventSource(`${this.baseUrl}/enviroment/status/${alias}`); 
+    const request: MiddlewareRequest = {
+      projectId: this.projectId,
+      serviceId: "enviroment",
+      httpMethod: "get",
+      parameters: ["status", alias],
+    };
 
-    return new Observable<EnviromentResponse>(observer => {
-      eventSource.onmessage = (event) => {
-        const data: EnviromentResponse = JSON.parse(event.data); 
-
-        if (data) { 
-          observer.next(data);
-        } else {
-          observer.error('Invalid data received from server'); 
-        }
-      };
-
-      eventSource.onerror = (error) => {
-        observer.error(error); 
-      };
-
-      return () => {
-        if (eventSource) {
-          eventSource.close();
-        }
-      };
-    });
+    return this.createSseRequestToMiddleware(request);
   }
 }

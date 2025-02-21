@@ -1,5 +1,5 @@
 export interface EnviromentResponse{
-    temperatura: number; 
+    httpMethod: number; 
     umidadeAmb: number; 
     umidadeSolo: number; 
     luminosidade: number; 
