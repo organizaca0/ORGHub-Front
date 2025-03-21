@@ -13,35 +13,11 @@ export abstract class BasicAbstractService{
     http = inject(HttpClient);
 
     createRequestToMiddleware(request: MiddlewareRequest): Observable<any> {
-        let url = `${this.baseUrl}/${request.projectId}/${request.serviceId}`;
-    
-        if (request.parameters && request.parameters.length) {
-            url += '/' + request.parameters.join('/');
-        }
-    
-        if (request.queryParams) {
-            const queryString = new URLSearchParams(request.queryParams as any).toString();
-            url += `?${queryString}`;
-        }
-    
-        switch (request.httpMethod.toLowerCase()) {
-            case 'get':
-                return this.http.get(url);
-            case 'post':
-                return this.http.post(url, request.body);
-            case 'put':
-                return this.http.put(url, request.body);
-            case 'patch':
-                return this.http.patch(url, request.body);
-            case 'delete':
-                return this.http.delete(url);
-            default:
-                throw new Error(`Unsupported HTTP method: ${request.httpMethod}`);
-        }
+        return this.http.post(this.baseUrl, request);
     }
     
     createSseRequestToMiddleware(request: MiddlewareRequest): Observable<any> {
-        let url = `${this.baseUrl}/${request.projectId}/${request.serviceId}`;
+        let url = `${this.baseUrl}/${request.projectId}/${request.controllerId}`;
     
         if (request.parameters && request.parameters.length) {
             url += '/' + request.parameters.join('/');

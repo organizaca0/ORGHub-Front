@@ -70,8 +70,8 @@
 				"serve": {
 					"builder": "ngx-build-plus:dev-server",
 					"options": {
-						"port": 4200,
-						"publicHost": "http://localhost:4200",
+						"port": 1234,
+						"publicHost": "http://localhost:1234",
 						"browserTarget": "ORGHUB:build",
 						"liveReload": true,
 						"extraWebpackConfig": "webpack.config.js"
