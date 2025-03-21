@@ -1,6 +1,6 @@
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
-export interface MiddlewareRequest {
+export interface GatewayRequest {
     projectId: string;
     controllerId: string;
     httpMethod:HttpMethod;

@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { MiddlewareRequest } from "../interfaces/MiddlewareRequest.interface";
+import { GatewayRequest } from "../interfaces/GatewayRequest.interface";
 import { enviroment } from '../../../enviroment/enviroment';
 
 export abstract class BasicAbstractService{
@@ -12,11 +12,11 @@ export abstract class BasicAbstractService{
 
     http = inject(HttpClient);
 
-    createRequestToMiddleware(request: MiddlewareRequest): Observable<any> {
+    createRequestToMiddleware(request: GatewayRequest): Observable<any> {
         return this.http.post(this.baseUrl, request);
     }
     
-    createSseRequestToMiddleware(request: MiddlewareRequest): Observable<any> {
+    createSseRequestToMiddleware(request: GatewayRequest): Observable<any> {
         let url = `${this.baseUrl}/${request.projectId}/${request.controllerId}`;
     
         if (request.parameters && request.parameters.length) {
